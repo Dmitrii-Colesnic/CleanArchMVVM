@@ -1,22 +1,15 @@
 package com.example.cleanarchmvvm.di
 
-import com.example.cleanarchmvvm.domain.UserRepository
 import com.example.cleanarchmvvm.domain.usecase.GetUserNameUseCase
 import com.example.cleanarchmvvm.domain.usecase.SaveUserNameUseCase
-import dagger.Module
-import dagger.Provides
+import org.koin.dsl.module
 
-@Module
-class DomainModule {
+val domainModule = module {
 
-//    @Provides
-//    fun provideGetUserNameUseCase(userRepository: UserRepository) : GetUserNameUseCase {
-//        return GetUserNameUseCase(userRepository = userRepository)
-//    }
-//
-//    @Provides
-//    fun provideSaveUserNameUseCase(userRepository: UserRepository) : SaveUserNameUseCase {
-//        return SaveUserNameUseCase(userRepository = userRepository)
-//    }
-
+    factory<GetUserNameUseCase> {
+        GetUserNameUseCase(userRepository = get())
+    }
+    factory<SaveUserNameUseCase> {
+        SaveUserNameUseCase(userRepository = get())
+    }
 }

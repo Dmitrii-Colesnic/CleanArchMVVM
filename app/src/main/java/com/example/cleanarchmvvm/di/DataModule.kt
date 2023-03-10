@@ -1,24 +1,19 @@
 package com.example.cleanarchmvvm.di
 
-import android.content.Context
 import com.example.cleanarchmvvm.data.UserRepositoryImpl
 import com.example.cleanarchmvvm.data.sharedprefs_storage.SharedPrefsUserStorage
 import com.example.cleanarchmvvm.data.sharedprefs_storage.UserStorage
 import com.example.cleanarchmvvm.domain.UserRepository
-import dagger.Module
-import dagger.Provides
+import org.koin.dsl.module
 
-@Module
-class DataModule {
+val dataModule = module {
 
-    @Provides
-    fun provideUserStorage(context: Context) : UserStorage {
-        return SharedPrefsUserStorage(context = context)
+    single<UserStorage> {
+        SharedPrefsUserStorage(context = get())
     }
 
-    @Provides
-    fun providesUserRepository(userStorage: UserStorage) : UserRepository {
-        return UserRepositoryImpl(userStorage = userStorage)
+    single<UserRepository> {
+        UserRepositoryImpl(userStorage = get())
     }
 
 }

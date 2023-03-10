@@ -2,9 +2,11 @@ package com.example.cleanarchmvvm.domain.usecase
 
 import com.example.cleanarchmvvm.domain.UserRepository
 import com.example.cleanarchmvvm.domain.model.SaveUserNameParam
+import dagger.Component
+import dagger.Subcomponent
 import javax.inject.Inject
 
-class SaveUserNameUseCase @Inject constructor(val userRepository: UserRepository) {
+class SaveUserNameUseCase (val userRepository: UserRepository) {
 
     fun execute(param: SaveUserNameParam): Boolean {
 

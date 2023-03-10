@@ -1,28 +1,16 @@
 package com.example.cleanarchmvvm.di
 
-import android.content.Context
-import com.example.cleanarchmvvm.domain.usecase.GetUserNameUseCase
-import com.example.cleanarchmvvm.domain.usecase.SaveUserNameUseCase
 import com.example.cleanarchmvvm.presentation.MainViewModel
-import dagger.Module
-import dagger.Provides
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-class AppModule(val context: Context) {
+val appModule = module {
 
-    @Provides
-    fun provideContext() : Context {
-        return context
+    viewModel<MainViewModel>{
+        MainViewModel(
+            getUserNameUseCase = get(),
+            saveUserNameUseCase = get()
+        )
     }
-
-//    fun provideMainViewModel(
-//        getUserNameUseCase: GetUserNameUseCase,
-//        saveUserNameUseCase: SaveUserNameUseCase
-//    ): MainViewModel {
-//        return MainViewModel(
-//            getUserNameUseCase = getUserNameUseCase,
-//            saveUserNameUseCase = saveUserNameUseCase
-//        )
-//    }
 
 }
